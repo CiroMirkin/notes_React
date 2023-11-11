@@ -1,0 +1,20 @@
+.note {
+    min-width: 100px;
+    max-width: 300px;
+    padding: 10px;
+    margin: 6px;
+    text-align: left;
+    font-weight: 700;
+    color: #172c66;
+    border-radius: 6px;
+}
+
+.pink {
+    background-color: #f582ae;
+}
+.blue {
+    background-color: #8bd3dd;
+}
+.brown {
+    background-color: #f3d2c1;
+}
