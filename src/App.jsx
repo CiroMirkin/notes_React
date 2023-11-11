@@ -37,10 +37,10 @@ function App() {
   return (
     <>
       <header>
-        <input type="text" className='noteTextInput' value={noteText} onChange={handleInputChange} onKeyUp={handleKeyUp} />
+        <input type="text" className='input' value={noteText} onChange={handleInputChange} onKeyUp={handleKeyUp} />
       </header>
       <main>
-        <NoteList notes={notes} deleteNoteFunction={deleteNote}></NoteList>
+        <NoteList notes={notes} deleteNoteFunction={deleteNote} addNoteFunction={addNote}></NoteList>
       </main>
     </>
   )

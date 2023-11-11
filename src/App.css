@@ -1,7 +1,6 @@
-.noteTextInput {
-  padding-inline-start: 6px;
-  margin: 4px 6px;
-  height: 30px;
+.input {
+  padding: 6px;
+  font-size: 2ch;
   font-weight: 700;
   color: #172c66;
   border-radius: 4px;
