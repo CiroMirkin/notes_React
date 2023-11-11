@@ -19,6 +19,11 @@ function App() {
 
     setNotes(newNotes)
   }
+  const deleteNote = (noteId) => {
+    let newNotes = [...notes]
+    newNotes = newNotes.filter(note => note.id !== noteId)
+    setNotes(newNotes)
+  }
 
   const [ noteText, setNoteText] = useState('')
   const handleInputChange = (e) => setNoteText(e.target.value)
@@ -35,7 +40,7 @@ function App() {
         <input type="text" className='noteTextInput' value={noteText} onChange={handleInputChange} onKeyUp={handleKeyUp} />
       </header>
       <main>
-        <NoteList notes={notes}></NoteList>
+        <NoteList notes={notes} deleteNoteFunction={deleteNote}></NoteList>
       </main>
     </>
   )
