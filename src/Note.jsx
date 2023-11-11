@@ -6,20 +6,27 @@ export function Note({ children, noteId, colorClassName, deleteNote, editNote })
     const className = `note ${colorClassName}`;
     const [ noteText, setNoteText ] = useState(children);
     const [ editMode, setEditMode ] = useState(false);
+    const [ newNoteText, setNewNoteText ] = useState(children);
 
     const toggleEditMode = () => {
         editMode ? setEditMode(false) : setEditMode(true)
     }
 
-    const changeNoteTextFromInput = () => {
+    const changeNoteText = () => {
+        if(!!newNoteText.trim()) {
+            editNote(noteId, newNoteText)
+            setNoteText(newNoteText)
+        } 
+        else {
+            setNewNoteText(noteText)
+        }
         toggleEditMode()
-        editNote(noteId, noteText)
     }
-    
-    const handleInputChange = (e) => setNoteText(e.target.value)
+
+    const handleInputChange = (e) => setNewNoteText(e.target.value)
     const handleKeyUp = (e) => {
         if(e.key === 'Enter') {
-            changeNoteTextFromInput()
+            changeNoteText()
         }
     }
 
@@ -29,13 +36,13 @@ export function Note({ children, noteId, colorClassName, deleteNote, editNote })
             <header className='note-header'>
                 { 
                     editMode 
-                    ? <TextareaAutosize className='textarea' value={noteText} onChange={handleInputChange} onKeyUp={handleKeyUp} />
+                    ? <TextareaAutosize className='textarea' value={newNoteText} onChange={handleInputChange} onKeyUp={handleKeyUp} />
                     : <p className="note-text">{ noteText }</p>
                 }
             </header>
             <footer>
                 <button className='btn' onClick={() => deleteNote(noteId)}>Eliminar</button>
-                <button className='btn' onClick={changeNoteTextFromInput}>Editar</button> 
+                <button className='btn' onClick={changeNoteText}>Editar</button> 
             </footer>
         </li>
     )

@@ -21,8 +21,12 @@ function App() {
   }
 
   const editTextNote = (noteId, noteText) => {
+    if(!noteText.trim()) {
+      setNotes([...notes])
+      return;
+    }
     const newNotes = [...notes].map(note => 
-      note.id !== noteId 
+      note.id === noteId 
       ? ({
         text: noteText,
         color: 'blue',
@@ -31,7 +35,7 @@ function App() {
       : note
     )
 
-    if(noteText.trim()) setNotes(newNotes)
+    setNotes(newNotes)
   }
 
   const deleteNote = (noteId) => {
