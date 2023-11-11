@@ -26,6 +26,7 @@ export function Note({ children, noteId, colorClassName, deleteNote, editNote })
     const handleInputChange = (e) => setNewNoteText(e.target.value)
     const handleKeyUp = (e) => {
         if(e.key === 'Enter') {
+            setNewNoteText(newNoteText.trim())
             changeNoteText()
         }
     }

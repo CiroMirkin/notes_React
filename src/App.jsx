@@ -12,7 +12,7 @@ function App() {
   const addNote = (noteText) => {
     const newNotes = [...notes]
     newNotes.push({
-      text: noteText,
+      text: noteText.trim(),
       color: 'blue',
       id: crypto.randomUUID()
     })
