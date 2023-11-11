@@ -2,7 +2,7 @@ import { useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import './Note.css'
 
-export function Note({ children, noteId, colorClassName, deleteNote }) {
+export function Note({ children, noteId, colorClassName, deleteNote, editNote }) {
     const className = `note ${colorClassName}`;
     const [ noteText, setNoteText ] = useState(children);
     const [ editMode, setEditMode ] = useState(false);
@@ -10,13 +10,19 @@ export function Note({ children, noteId, colorClassName, deleteNote }) {
     const toggleEditMode = () => {
         editMode ? setEditMode(false) : setEditMode(true)
     }
+
+    const changeNoteTextFromInput = () => {
+        toggleEditMode()
+        editNote(noteId, noteText)
+    }
     
     const handleInputChange = (e) => setNoteText(e.target.value)
     const handleKeyUp = (e) => {
         if(e.key === 'Enter') {
-            toggleEditMode()
+            changeNoteTextFromInput()
         }
     }
+
 
     return (
         <li className={className}>
@@ -29,7 +35,7 @@ export function Note({ children, noteId, colorClassName, deleteNote }) {
             </header>
             <footer>
                 <button className='btn' onClick={() => deleteNote(noteId)}>Eliminar</button>
-                <button className='btn' onClick={toggleEditMode}>Editar</button> 
+                <button className='btn' onClick={changeNoteTextFromInput}>Editar</button> 
             </footer>
         </li>
     )

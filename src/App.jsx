@@ -18,6 +18,19 @@ function App() {
     })
     if(noteText.trim()) setNotes(newNotes)
   }
+  const editTextNote = (noteId, noteText) => {
+    let newNotes = [...notes]
+    newNotes = newNotes.map(note => 
+      note.id !== noteId 
+      ? ({
+        text: noteText,
+        color: 'blue',
+        id: noteId
+      }) 
+      : note
+    )
+    if(noteText.trim()) setNotes(newNotes)
+  }
   const deleteNote = (noteId) => {
     let newNotes = [...notes]
     newNotes = newNotes.filter(note => note.id !== noteId)
@@ -44,7 +57,7 @@ function App() {
         <button className="btn" onClick={addNoteFromInput}>Agregar</button>
       </header>
       <main>
-        <NoteList notes={notes} deleteNoteFunction={deleteNote} addNoteFunction={addNote}></NoteList>
+        <NoteList notes={notes} deleteNoteFunction={deleteNote} addNoteFunction={addNote} editTextNoteFunction={editTextNote}></NoteList>
       </main>
     </>
   )
