@@ -16,11 +16,12 @@ function App() {
       color: 'blue',
       id: crypto.randomUUID()
     })
+
     if(noteText.trim()) setNotes(newNotes)
   }
+
   const editTextNote = (noteId, noteText) => {
-    let newNotes = [...notes]
-    newNotes = newNotes.map(note => 
+    const newNotes = [...notes].map(note => 
       note.id !== noteId 
       ? ({
         text: noteText,
@@ -29,11 +30,12 @@ function App() {
       }) 
       : note
     )
+
     if(noteText.trim()) setNotes(newNotes)
   }
+
   const deleteNote = (noteId) => {
-    let newNotes = [...notes]
-    newNotes = newNotes.filter(note => note.id !== noteId)
+    const newNotes = [...notes].filter(note => note.id !== noteId)
     setNotes(newNotes)
   }
 
