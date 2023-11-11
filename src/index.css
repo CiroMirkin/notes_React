@@ -5,10 +5,9 @@
   font-size: 2ch;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: #fef6e4;
-  background-color: #172c66;
-
+  color: #172c66;
+  background-color: #fef6e4;
+  
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -34,11 +33,4 @@ body {
 }
 .btn:hover {
   background-color: #f3d2c1;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #172c66;
-    background-color: #fef6e4;
-  }
 }
