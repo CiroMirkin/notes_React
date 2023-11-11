@@ -16,8 +16,7 @@ function App() {
       color: 'blue',
       id: crypto.randomUUID()
     })
-
-    setNotes(newNotes)
+    if(noteText.trim()) setNotes(newNotes)
   }
   const deleteNote = (noteId) => {
     let newNotes = [...notes]
@@ -25,12 +24,16 @@ function App() {
     setNotes(newNotes)
   }
 
+  const addNoteFromInput = () => {
+      addNote(noteText)
+      setNoteText('')
+  }
+
   const [ noteText, setNoteText] = useState('')
   const handleInputChange = (e) => setNoteText(e.target.value)
   const handleKeyUp = (e) => {
     if(e.key === 'Enter') {
-      addNote(noteText)
-      setNoteText('')
+      addNoteFromInput()
     }
   }
 
@@ -38,6 +41,7 @@ function App() {
     <>
       <header>
         <input type="text" className='input' value={noteText} onChange={handleInputChange} onKeyUp={handleKeyUp} />
+        <button className="btn" onClick={addNoteFromInput}>Agregar</button>
       </header>
       <main>
         <NoteList notes={notes} deleteNoteFunction={deleteNote} addNoteFunction={addNote}></NoteList>
